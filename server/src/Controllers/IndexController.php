@@ -3,13 +3,13 @@ namespace App\Controllers;
 
 class IndexController
 {
-    public function index(): void
+    public function index(): array
     {
-        echo json_encode(["message" => "Hello from SaveIt backend"]);
+        return ["message" => "Hello from SaveIt backend"];
     }
 
-    public function hello(): void
+    public function hello(): array
     {
-        echo json_encode(["message" => "Hello"]);
+        return ["message" => "Hello"];
     }
 }
