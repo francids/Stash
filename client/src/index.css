@@ -1,4 +1,11 @@
+@import url("https://fonts.googleapis.com/css2?family=TASA+Orbiter:wght@400..800&display=swap");
+
 @import "tailwindcss";
+
+@theme {
+  --font-sans: "TASA Orbiter", sans-serif;
+}
+
 @plugin "daisyui";
 
 @plugin "daisyui/theme" {
