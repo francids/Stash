@@ -19,7 +19,7 @@ header("Access-Control-Allow-Headers: Content-Type, Authorization");
 $indexController = new IndexController();
 $authController = new AuthController(new UserService(new Connection()), new JWTService());
 
-if ($path == "/" && $method == "GET") {
+if ($path == "/") {
     echo json_encode($indexController->index());
     exit;
 }
@@ -35,7 +35,7 @@ if ($path === "/login" && $method === "POST") {
 $authMiddleware = new AuthMiddleware(new JWTService());
 $authMiddleware->authenticate();
 
-if ($path == "/hello" && ($method == "GET" || $method == "POST")) {
+if ($path == "/hello") {
     echo json_encode($indexController->hello());
     exit;
 }
