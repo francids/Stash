@@ -12,7 +12,7 @@ class AuthMiddleware
         $this->jwtService = $jwtService;
     }
 
-    public function authenticate()
+    public function authenticate(): int
     {
         $token = $this->jwtService->getTokenFromHeader();
 
@@ -29,6 +29,6 @@ class AuthMiddleware
             exit;
         }
 
-        return $validation;
+        return $validation["user_id"];
     }
 }

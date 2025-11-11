@@ -3,8 +3,10 @@ require __DIR__ . "/../vendor/autoload.php";
 
 use App\Controllers\IndexController;
 use App\Controllers\AuthController;
+use App\Controllers\ItemsController;
 use App\Services\JWTService;
 use App\Services\UserService;
+use App\Services\ItemsService;
 use App\Middleware\AuthMiddleware;
 use App\Database\Connection;
 
@@ -18,6 +20,7 @@ header("Access-Control-Allow-Headers: Content-Type, Authorization");
 
 $indexController = new IndexController();
 $authController = new AuthController(new UserService(new Connection()), new JWTService());
+$itemsController = new ItemsController(new ItemsService(new Connection()));
 
 if ($path == "/") {
     echo json_encode($indexController->index());
@@ -33,7 +36,20 @@ if ($path === "/login" && $method === "POST") {
 }
 
 $authMiddleware = new AuthMiddleware(new JWTService());
-$authMiddleware->authenticate();
+$userId = $authMiddleware->authenticate();
+
+if ($path === "/items") {
+    switch ($method) {
+        case "GET":
+            $itemsController->getAll($userId);
+        case "POST":
+            $itemsController->add($userId);
+        case "PUT":
+            $itemsController->edit($userId);
+        case "DELETE":
+            $itemsController->remove($userId);
+    }
+}
 
 if ($path == "/hello") {
     echo json_encode($indexController->hello());

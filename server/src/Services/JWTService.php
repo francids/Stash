@@ -16,7 +16,7 @@ class JWTService
         $this->secretKey = $_ENV["JWT_SECRET"] ?? getenv("JWT_SECRET");
     }
 
-    public function generateToken($userId)
+    public function generateToken($userId): string
     {
         $payload = [
             "iss" => "StashBackend",
@@ -28,11 +28,11 @@ class JWTService
         return JWT::encode($payload, $this->secretKey, $this->algorithm);
     }
 
-    public function verifyToken($token)
+    public function verifyToken($token): array
     {
         try {
-            JWT::decode($token, new Key($this->secretKey, $this->algorithm));
-            return ["valid" => true];
+            $decoded = JWT::decode($token, keyOrKeyArray: new Key($this->secretKey, $this->algorithm));
+            return ["valid" => true, "user_id" => $decoded->user_id];
         } catch (\Exception $e) {
             return ["valid" => false, "error" => $e->getMessage()];
         }
