@@ -3,11 +3,11 @@ import { createBrowserRouter } from "react-router";
 import { RouterProvider } from "react-router/dom";
 import "./index.css";
 
-import AuthPage from "./AuthPage.tsx";
-import AppPage from "./AppPage.tsx";
-import IndexPage from "./IndexPage.tsx";
-import AuthProvider from "./AuthProvider.tsx";
-import ProtectedRoute from "./ProtectedRoute.tsx";
+import AuthPage from "./pages/AuthPage.tsx";
+import AppPage from "./pages/AppPage.tsx";
+import IndexPage from "./pages/IndexPage.tsx";
+import AuthProvider from "./auth/AuthProvider.tsx";
+import ProtectedRoute from "./auth/ProtectedRoute.tsx";
 
 const router = createBrowserRouter([
   {

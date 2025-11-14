@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { useAuth } from "./AuthProvider";
-import Logo from "./Logo";
+import { useAuth } from "../auth/AuthProvider";
+import Logo from "../Logo";
 
 type ItemType = "note" | "link";
 

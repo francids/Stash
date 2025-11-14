@@ -1,5 +1,5 @@
 import { createContext, useCallback, useContext } from "react";
-import { backendUrl } from "./config.ts";
+import { backendUrl } from "../config.ts";
 
 const AuthContext = createContext<{
   register: (name: string, email: string, pass: string) => Promise<void>;

@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router";
-import Logo from "./Logo";
+import Logo from "../Logo";
 
 export default function IndexPage() {
   const navigate = useNavigate();
